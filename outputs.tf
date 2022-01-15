@@ -1,26 +1,24 @@
-output "user_key_id" {
-  value       = aws_iam_access_key.this.id
-  description = "User access key"
-}
-
-output "user_smtp_password" {
-  value       = aws_iam_access_key.this.ses_smtp_password_v4
-  description = "User SES SMTP password"
-}
-
-output "dkim_pairs" {
-  value = [for dkim in aws_route53_record.dkim : {
-    name  = dkim.name,
-    value = aws_ses_domain_dkim.this.dkim_tokens[index(aws_route53_record.dkim, dkim)]
+output "dkim_verification_attrs" {
+  value = [for dkim in aws_ses_domain_dkim.this.dkim_tokens : {
+    name  = "${dkim}._domainkey.${var.domain_name}"
+    type  = "CNAME"
+    value = "${dkim}.dkim.amazonses.com"
   }]
-  description = "DKIM name-value pairs needed to verify domain"
+  description = "DKIM name, value, type attributes needed to verify domain"
 }
 
-output "domain_identity" {
-  value = {
-    name  = aws_route53_record.domain_identity.name,
-    value = aws_ses_domain_identity.this.verification_token
-  }
-  description = "Domain name-value pair needed to verify domain"
+output "domain_identity_verification_attrs" {
+  value = [
+    {
+      name  = "_amazonses.${var.domain_name}"
+      type  = "TXT"
+      value = aws_ses_domain_identity.this.verification_token
+    }
+  ]
+  description = "Domain identity name, value, type attributes needed to verify domain"
 }
 
+output "send_email_policy_arn" {
+  value       = aws_iam_policy.this.arn
+  description = "IAM policy ARN for sending emails"
+}

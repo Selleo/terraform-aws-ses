@@ -1,16 +1,16 @@
 output "user_key_id" {
-  value = module.ses.user_key_id
+  value = aws_iam_access_key.this.id
 }
 
 output "user_secret" {
-  value     = module.ses.user_smtp_password
+  value     = aws_iam_access_key.this.ses_smtp_password_v4
   sensitive = true
 }
 
-output "dkim_pairs" {
-  value = module.ses.dkim_pairs
+output "dkim_verification_attrs" {
+  value = module.ses.dkim_verification_attrs
 }
 
-output "domain_identity" {
-  value = module.ses.domain_identity
+output "domain_identity_verification_attrs" {
+  value = module.ses.domain_identity_verification_attrs
 }
