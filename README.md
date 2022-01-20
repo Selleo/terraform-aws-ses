@@ -1,10 +1,8 @@
 # Terraform AWS SES module
 
- See [Changelog](https://github.com/Selleo/terraform-aws-iam/blob/main/CHANGELOG.md) for release information.
+See [Changelog](https://github.com/Selleo/terraform-aws-ses/blob/main/CHANGELOG.md) for release information.
 
 ## Maintainers
-
-See [Dev document](https://github.com/Selleo/terraform-aws-backend/blob/main/DEV.md) for development instructions.
 
 * Mateusz Wieczorek ([@mateuszwu](https://github.com/mateuszwu))
 
