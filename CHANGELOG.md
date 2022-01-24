@@ -2,4 +2,4 @@
 
 # 0.1.0
 
-* Release initial modules:
+* Release SES module
