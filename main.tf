@@ -8,17 +8,17 @@ locals {
 
   # remove empty options
   dmarc_record = join(";", compact([
-    "v=#{var.dmarc.v}",
-    "p=#{var.dmarc.p}",
-    var.dmarc.pct == null ? null : "pct=#{var.dmarc.pct}",
-    var.dmarc.rua == null ? null : "rua=#{var.dmarc.rua}",
-    var.dmarc.ruf == null ? null : "ruf=#{var.dmarc.ruf}",
-    var.dmarc.fo == null ? null : "fo=#{var.dmarc.fo}",
-    var.dmarc.aspf == null ? null : "aspf=#{var.dmarc.aspf}",
-    var.dmarc.adkim == null ? null : "adkim=#{var.dmarc.adkim}",
-    var.dmarc.rf == null ? null : "rf=#{var.dmarc.rf}",
-    var.dmarc.ri == null ? null : "ri=#{var.dmarc.ri}",
-    var.dmarc.sp == null ? null : "sp=#{var.dmarc.sp}",
+    "v=${var.dmarc.v}",
+    "p=${var.dmarc.p}",
+    var.dmarc.pct == null ? null : "pct=${var.dmarc.pct}",
+    var.dmarc.rua == null ? null : "rua=${var.dmarc.rua}",
+    var.dmarc.ruf == null ? null : "ruf=${var.dmarc.ruf}",
+    var.dmarc.fo == null ? null : "fo=${var.dmarc.fo}",
+    var.dmarc.aspf == null ? null : "aspf=${var.dmarc.aspf}",
+    var.dmarc.adkim == null ? null : "adkim=${var.dmarc.adkim}",
+    var.dmarc.rf == null ? null : "rf=${var.dmarc.rf}",
+    var.dmarc.ri == null ? null : "ri=${var.dmarc.ri}",
+    var.dmarc.sp == null ? null : "sp=${var.dmarc.sp}",
   ]))
 }
 
