@@ -4,9 +4,11 @@ locals {
 
 module "ses" {
   source          = "../"
-  email_addresses = ["info@example.com", "office@example.com"]
   domain_name     = local.domain_name
   name_prefix     = "exmpale-com"
+
+  zone_id     = data.aws_route53_zone.this.zone_id
+  verify_dkim = true
 }
 
 resource "aws_iam_user" "this" {
@@ -25,13 +27,4 @@ resource "aws_iam_user_policy_attachment" "this" {
 data "aws_route53_zone" "this" {
   name         = local.domain_name
   private_zone = false
-}
-
-resource "aws_route53_record" "dkim" {
-  count   = 3
-  zone_id = data.aws_route53_zone.this.zone_id
-  name    = element(module.ses.dkim_verification_attrs, count.index).name
-  type    = element(module.ses.dkim_verification_attrs, count.index).type
-  ttl     = "600"
-  records = [element(module.ses.dkim_verification_attrs, count.index).value]
 }
