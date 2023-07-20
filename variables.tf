@@ -70,13 +70,13 @@ variable "dmarc" {
   })
   default = {
     v     = "DMARC1"
-    p     = "none"
-    pct   = null
+    p     = "reject"
+    pct   = "100"
     rua   = null
     ruf   = null
     fo    = null
-    aspf  = null
-    adkim = null
+    aspf  = "s"
+    adkim = "s"
     rf    = null
     ri    = null
     sp    = null
