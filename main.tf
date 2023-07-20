@@ -55,7 +55,7 @@ resource "aws_iam_policy" "this" {
 
 
 resource "aws_route53_record" "this_verify_dkim" {
-  count = var.zone_id != "" && var.verify_dkim ? length(local.dkim_verification_attrs) : 0
+  count = var.zone_id != "" && var.verify_dkim ? 3 : 0
 
   zone_id = var.zone_id
   name    = local.dkim_verification_attrs[count.index].name
